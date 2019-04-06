@@ -40,14 +40,14 @@ class App extends Component {
   };
 
   deleteTask = taskID => {
-    var counter = 0;
     var oldTasks = this.state.tasks;
-    oldTasks.forEach(item => {
+    oldTasks.sort((a, b) => a.status - b.status);
+    oldTasks.some((item, index) => {
       if (item.id === taskID) {
-        oldTasks.splice(counter, 1);
+        oldTasks.splice(index, 1);
       }
+      return null;
     });
-
     this.setState({
       tasks: oldTasks
     });
